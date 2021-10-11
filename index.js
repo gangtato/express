@@ -3,10 +3,12 @@ const express = require('express')
 const app = express();
 const logger = require('morgan');
 const path = require('path');
+const dotenv = require('dotenv');
 
 const productRouter = require('./src/product/routes');
 const productRouterV2 = require('./src/product_v2/routes');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 80;
+dotenv.config();
 
 app.use(logger('dev'))
 app.use(express.urlencoded({extended:true}));
