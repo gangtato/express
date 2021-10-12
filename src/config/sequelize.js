@@ -4,8 +4,8 @@ require('dotenv').config();
 const sequelize = new Sequelize({
     database: 'eduwork-cruds-v2',
     host: 'localhost',
-    username: 'root',
-    password: '',
+    username: 'william',
+    password: 'william123',
     dialect:'mysql'
 })
 
