@@ -45,7 +45,7 @@ const store = async(req, res) => {
         fs.renameSync(image.path, target);
         try{
            await Product.sync();
-           const result = Product.create({name, price, stock, status, description, image_url:`https://express-ku.herokuapp.com/public/${image.originalname}`});
+           const result = Product.create({name, price, stock, status, description, image_url:`http://lahdisiniaja.xyz/public/${image.originalname}`});
            res.send(result)
         }catch(err){
            res.send(err);
