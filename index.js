@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 
 const productRouter = require('./src/product/routes');
 const productRouterV2 = require('./src/product_v2/routes');
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 dotenv.config();
 
 app.use(logger('dev'))
