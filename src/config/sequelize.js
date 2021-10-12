@@ -2,10 +2,10 @@ const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize({
-    database: process.env.DATABASE_PROD,
-    host: process.env.HOST_PROD,
-    username: process.env.USERNAME_PROD,
-    password: process.env.PASSWORD_PROD,
+    database: 'eduwork-cruds-v2',
+    host: 'localhost',
+    username: 'root',
+    password: '',
     dialect:'mysql'
 })
 
