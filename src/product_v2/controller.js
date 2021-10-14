@@ -75,7 +75,7 @@ const update = async(req, res) => {
 
 const destroy = async (req, res) => {
     try{
-        let data = await User.destroy({
+        let data = await Product.destroy({
             where: {
               id: req.params.id
             }
