@@ -5,17 +5,22 @@ const path = require('path');
 const Product = './model';
 
 const index = (req, res) => {
-    Product.find({})
-    .toArray()
-    .then(result => res.send(result))
-    .catch(err => res.send(err))
+    let product = Product.find();
+    try{
+        res.send(product);
+    }catch(err){
+        res.send(err);
+    }
 }
 
 const view = (req, res) => {
     const { id } = req.params;
-    Product.findById(id)
-    .then(result => res.send(result))
-    .catch(err => res.send(err))
+    let product = Product.findById(id);
+    try{
+       res.send(product);
+    }catch(err){
+       res.send(err);
+    }
 }
 
 const store = (req, res) => {
@@ -24,9 +29,8 @@ const store = (req, res) => {
     if(image){
         const target = path.join(__dirname, "../../uploads", image.originalname);
         fs.renameSync(image.path, target);
-        Product.create({name, price, stock, status, description, image_url:`http://45.86.68.155:3000/public/${image.originalname}`})
-          .then(result => res.send(result))
-          .catch(err => res.send(err))
+        let product = Product.create({name, price, stock, status, description, image_url:`http://45.86.68.155:3000/public/${image.originalname}`});
+        res.send(product)
     }  
 }
 
