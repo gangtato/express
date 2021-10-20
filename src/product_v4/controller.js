@@ -1,11 +1,9 @@
-const { ObjectId } = require('bson');
-const db = require('../config/mongodb');
 const fs = require('fs');
 const path = require('path');
-const Product = './model';
+const Product = require('./model');
 
 const index = async(req, res) => {
-    let product = await Product.find();
+    let product = await Product.find({});
     try{
         res.send(product);
     }catch(err){

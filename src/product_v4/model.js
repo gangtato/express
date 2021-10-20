@@ -19,13 +19,13 @@ const productSchema = mongoose.Schema({
         default: true
     },
     description:{
-        type: Text
+        type: String
     },
     image_url:{
         type: String
     }
 });
 
-const Product = mongoose.model('products', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;
