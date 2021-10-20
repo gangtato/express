@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const Product = './model';
 
-const index = (req, res) => {
-    let product = Product.find();
+const index = async(req, res) => {
+    let product = await Product.find();
     try{
         res.send(product);
     }catch(err){
@@ -13,9 +13,9 @@ const index = (req, res) => {
     }
 }
 
-const view = (req, res) => {
+const view = async(req, res) => {
     const { id } = req.params;
-    let product = Product.findById(id);
+    let product = await Product.findById(id);
     try{
        res.send(product);
     }catch(err){
@@ -23,25 +23,25 @@ const view = (req, res) => {
     }
 }
 
-const store = (req, res) => {
+const store = async(req, res) => {
     const { name, price, stock, status, description } = req.body;
     const image = req.file;
     if(image){
         const target = path.join(__dirname, "../../uploads", image.originalname);
         fs.renameSync(image.path, target);
-        let product = Product.create({name, price, stock, status, description, image_url:`http://45.86.68.155:3000/public/${image.originalname}`});
+        let product = await Product.create({name, price, stock, status, description, image_url:`http://45.86.68.155:3000/public/${image.originalname}`});
         res.send(product)
     }  
 }
 
-const update = (req, res) => {
+const update = async(req, res) => {
     const { name, price, stock, status, description } = req.body;
     const image = req.file;
     if(image){
         const target = path.join(__dirname, "../../uploads", image.originalname);
         fs.renameSync(image.path, target);
         try{ 
-           const result = Product.updateOne({_id: req.params.id },{ name, price, stock, status, description });
+           const result = await Product.updateOne({_id: req.params.id },{ name, price, stock, status, description });
            res.send(result)
         }catch(err){
            res.send(err);
@@ -49,9 +49,9 @@ const update = (req, res) => {
     } 
 }
 
-const destroy = (req, res) => {
+const destroy = async(req, res) => {
     try{
-        let data = Product.deleteOne({_id: req.params.id});
+        let data = await Product.deleteOne({_id: req.params.id});
         res.send(data);
     }catch(err){
         res.send(err);
